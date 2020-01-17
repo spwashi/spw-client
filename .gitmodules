@@ -1,0 +1,3 @@
+[submodule "lib/spw-lang"]
+	path = lib/spw-lang
+	url = https://github.com/spwashi/spw-lang
