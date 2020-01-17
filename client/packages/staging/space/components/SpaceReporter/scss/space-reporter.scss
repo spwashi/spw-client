@@ -1,0 +1,16 @@
+.space-reporter {
+  > * {
+    //visibility: hidden;
+  }
+}
+
+.invalidated {
+  outline: thin solid red;
+}
+
+.valid {
+}
+
+.space-constraint-wrapper.mode-changed {
+  background-color: rgba(red, .05);
+}

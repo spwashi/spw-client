@@ -1,0 +1,120 @@
+{
+  "parser":  "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "env":     {
+    "browser": true,
+    "node":    true
+  },
+  "rules":   {
+    "camelcase":                     "off",
+    "comma-dangle":                  "off",
+    "import/prefer-default-export":  "off",
+    "import/no-internal-modules":    [
+      "warn",
+      {
+        "allow": [
+          "**/packages/**"
+        ]
+      }
+    ],
+    "indent":                        [
+      "error",
+      4,
+      {
+        "SwitchCase":          1,
+        "FunctionDeclaration": {
+          "parameters": "first"
+        },
+        "FunctionExpression":  {
+          "parameters": "first"
+        },
+        "CallExpression":      {
+          "arguments": "first"
+        },
+        "ArrayExpression":     "first",
+        "ObjectExpression":    "off",
+        "ignoredNodes":        [
+          "ConditionalExpression"
+        ]
+      }
+    ],
+    "jsx-a11y/label-has-for":        [
+      2,
+      {
+        "components":    [
+          "Label"
+        ],
+        "required":      {
+          "every": [
+            "nesting",
+            "id"
+          ]
+        },
+        "allowChildren": true
+      }
+    ],
+    "arrow-parens":                  [
+      "error",
+      "as-needed"
+    ],
+    "key-spacing":                   [
+      "error",
+      {
+        "align": {
+          "beforeColon": false,
+          "afterColon":  true,
+          "on":          "value"
+        }
+      }
+    ],
+    "newline-per-chained-call":      [
+      "error",
+      {
+        "ignoreChainWithDepth": 2
+      }
+    ],
+    "no-console":                    "off",
+    "no-multi-spaces":               "off",
+    "no-return-assign":              "off",
+    "no-restricted-syntax":          "off",
+    "no-underscore-dangle":          "off",
+    "no-unused-vars":                "off",
+    "no-unused-expressions":         [
+      "error",
+      {
+        "allowShortCircuit": true
+      }
+    ],
+    "no-use-before-define":          [
+      "error",
+      "nofunc"
+    ],
+    "operator-linebreak":            [
+      "error",
+      "before",
+      {
+        "overrides": {
+          "=": "after"
+        }
+      }
+    ],
+    "react/jsx-filename-extension":  "off",
+    "react/jsx-indent":              "off",
+    "react/no-children-prop":        "off",
+    "react/jsx-indent-props":        [
+      "error",
+      "first"
+    ],
+    "react/jsx-first-prop-new-line": "off",
+    "react/require-default-props":   "off",
+    "new-parens":                    "off",
+    "no-trailing-spaces":            "off",
+    "implicit-arrow-linebreak":      "off",
+    "max-lines":                     [
+      "error",
+      100
+    ]
+  }
+}

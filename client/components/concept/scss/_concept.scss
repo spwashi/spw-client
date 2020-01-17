@@ -1,0 +1,94 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+
+
+.spw-concept-anchor {
+  display:     inline-flex;
+  white-space: nowrap;
+
+  .spw-label {
+    font-weight: normal;
+
+    &:hover {
+      color: green;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.spw-concept-context {
+  display:     inline-flex;
+  white-space: nowrap;
+}
+
+
+.spw-concept-list-item {
+  line-height: 1.5em;
+  display:     flex;
+  height:      auto;
+  margin:      0;
+  padding:     0;
+  list-style:  none;
+}
+
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
+.spw-concept-list {
+  /* Specify in CSS */
+  font-family:    'Fira Code', monospace;
+
+  @supports (font-variation-settings: normal) {
+    font-family: 'Fira Code VF', monospace;
+  }
+
+  font-size:      10px;
+  display:        inline-flex;
+  align-items:    flex-start;
+  flex-direction: column;
+  flex-wrap:      nowrap;
+  padding:        0;
+
+  button {
+    font-size:  1em;
+    padding:    0;
+    border:     none;
+    background: none;
+  }
+}
+
+.spw-concept {
+  display:     inline-flex;
+  align-items: center;
+  flex-wrap:   nowrap;
+  box-sizing:  border-box;
+}
+
+.concept-anchor-wrapper {
+  display:       flex;
+  align-content: center;
+  align-items:   center;
+  flex-wrap:     nowrap;
+
+
+  .spw-concept-context:not(:empty) {
+    display:   inline-flex;
+    flex-wrap: nowrap;
+  }
+}
+
+.item-wrapper {
+  display: inline-flex;
+  width:   100%;
+
+  > * {
+    width: 100%;
+  }
+}
+
+.spw-instance {
+  white-space: nowrap;
+}
