@@ -2,10 +2,12 @@ import express          from 'express';
 import { createServer } from 'http';
 import cors             from 'cors';
 import objToSpw         from 'spw-lang/util/objToSpw';
+import socketIO    from 'socket.io';
 
+console.log(socketIO);
 const app  = express();
 const http = createServer(app);
-const io   = require('socket.io')(http);
+const io   = socketIO(http);
 
 app.use(cors());
 
