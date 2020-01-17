@@ -59,8 +59,8 @@ hexes
 let colorI;
 
 function aColor(light) {
-    // const colorArr = hexes.map(hex => Color(hex));
-    const colorArr = light ? colors.light : colors.dark;
+    const colorArr = hexes.map(hex => Color(hex));
+    // const colorArr = light ? colors.light : colors.dark;
     colorI         = colorI >= colorArr.length - 1 || typeof colorI !== 'undefined'
                      ? Date.now() % (colorArr.length - 1)
                      : (colorI || 0) + 1;
