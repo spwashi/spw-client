@@ -3,9 +3,8 @@ import * as parser                                 from 'spw-lang/bin/parser';
 import SpwNote                                     from '../packages/notes/SpwNote';
 import { Stage }                                   from '../packages/staging';
 import useToggle                                   from '../packages/toggle/hooks/useToggle';
-import ConceptManager                              from './concept/components/containers/ConceptManager';
-import { SymbolRegistry }                          from 'spw-lang/lang/registry/symbolRegistry';
-import { SymbolResolver }                          from 'spw-lang/lang/registry/symbolResolver';
+import ConceptManager
+                                                   from './concept/components/containers/ConceptManager';
 import ColorContextProvider                        from '../packages/staging/color/context/context';
 
 
@@ -28,14 +27,14 @@ export default function SpwTree(props: TreeProps) {
     // display
     const displayState                        = useToggle(false);
     const { open }                            = displayState;
-    const [parsed: SymbolRegistry, setParsed] = useState();
+    const [parsed, setParsed]                 = useState();
     const [symbolResolver, setSymbolResolver] = useState();
     const [renderKey, setRenderKey]           = useState(0);
     const onSymbolRegistryKeyChange           = useCallback(() => setRenderKey(renderKey + 1), [renderKey]);
 
     useEffect(
         () => {
-            parsed && parsed.onKeyChange(onSymbolRegistryKeyChange);
+            parsed && parsed.onKeyChange && parsed.onKeyChange(onSymbolRegistryKeyChange);
             return () => {
                 console.log('should remove anchor change event listener');
             };
@@ -47,7 +46,6 @@ export default function SpwTree(props: TreeProps) {
         () => {
             const registry = parser.parse(content);
             setParsed(registry);
-            setSymbolResolver(new SymbolResolver({ registry }));
         },
         [content]
     );
@@ -66,15 +64,15 @@ export default function SpwTree(props: TreeProps) {
             <div className={`spw-tree d-flex ${!open ? 'flex-column' : 'flex-row'}`}>
                 {
                     isEditorMode || displayMode === 'both'
-                    ? (
-                        <SpwNote
-                            fullScreen={isEditorMode}
-                            content={content}
-                            onChange={input.onChange}
-                            onSave={input.onSave}
-                        />
-                    )
-                    : null
+                        ? (
+                            <SpwNote
+                                fullScreen={isEditorMode}
+                                content={content}
+                                onChange={input.onChange}
+                                onSave={input.onSave}
+                            />
+                        )
+                        : null
                 }
                 {displayMode === 'tree' || displayMode === 'both' ? (
                     [
@@ -82,7 +80,7 @@ export default function SpwTree(props: TreeProps) {
                         <Stage key="stage">
                             <ConceptManager
                                 registry={parsed || null}
-                                resolver={symbolResolver}
+                                resolver={() => {}}
                                 events={events}
                                 id={parsed?.key}
                             />
