@@ -1,19 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import type { TreeInputProps } from './components/tree';
-import SpwTree from './components/tree';
-import { useLocalStorage, useThump } from './util/hooks/hooks';
+import React, { useEffect, useState }     from 'react';
+import io                                 from 'socket.io-client/dist/socket.io';
+import ReactDOM                           from 'react-dom';
+import type { TreeInputProps }            from './components/tree';
+import SpwTree                            from './components/tree';
+import { useLocalStorage, useThump }      from './util/hooks/hooks';
 import { useReadContent, useSaveContent } from './packages/storage/hooks/useSaveHook';
-import io from 'socket.io-client/dist/socket.io';
 
 type TreeInputModeOptions = 'props' | 'local-storage' | 'api' | 'local-db';
 type ConnectedTreeProps =
     TreeInputProps
-    & { inputMode: TreeInputModeOptions, displayMode: 'both' | 'editor' | 'tree' }
-    & ({ label: string });
+    | (
+    {
+        inputMode?: TreeInputModeOptions,
+        displayMode?: 'both' | 'editor' | 'tree'
+    }
+    & (
+    {
+        label?: string
+    }
+    )
+    );
 
 function useInputFromProps(props: ConnectedTreeProps) {
     const { content, onChange, onSave } = props;
-    return { content, onChange, onSave };
+    return {
+        content,
+        onChange,
+        onSave
+    };
 }
 
 function useInputFromSocket(props: ConnectedTreeProps) {
@@ -47,13 +61,20 @@ function useInputFromSocket(props: ConnectedTreeProps) {
         []
     );
 
-    return { content, onChange, onSave };
+    return {
+        content,
+        onChange,
+        onSave
+    };
 }
 
 function useInputFromLocalStorage(props: ConnectedTreeProps) {
     const { label = 'test' } = props;
-    const [input, onChange]  = useLocalStorage('test', '');
-    return { content: input, onChange };
+    const [input, onChange]  = useLocalStorage(label, '');
+    return {
+        content: input,
+        onChange
+    };
 }
 
 function useInputFromLocalDB(props: ConnectedTreeProps) {
@@ -108,10 +129,46 @@ function useInput(mode: TreeInputModeOptions, props) {
     return input;
 }
 
-export default function ConnectedSpwTree(props: ConnectedTreeProps = {}) {
+function ConnectedSpwTree(props: ConnectedTreeProps = {}) {
     const { inputMode = 'local-storage' } = props;
-    const { displayMode = 'both' }        = props || {};
+    const { displayMode = 'editor' }      = props || {};
     const { parseMode = 'manual' }        = props || {};
     const input                           = useInput(inputMode, props);
-    return <SpwTree input={input} displayMode={displayMode} autoParse={parseMode === 'auto'} />;
+    return (
+        <SpwTree
+            input={input}
+            displayMode={displayMode}
+            autoParse={parseMode === 'auto'}
+        />
+    );
 }
+
+export default ConnectedSpwTree;
+const App =
+          () => {
+              const queryString = window.location.search;
+              const urlParams   = new URLSearchParams(queryString);
+
+
+              const inputMode   = urlParams.get('input')
+                                  || ['local-storage', 'local-db', 'api'][0];
+              const displayMode = urlParams.get('display')
+                                  || ['editor', 'tree', 'both'][0];
+              const parseMode   = urlParams.get('parse')
+                                  || ['manual', 'auto'][0];
+              const conceptName = urlParams.get('label')
+                                  || ['test', 'other'][0];
+
+              return (
+                  <ConnectedSpwTree
+                      label={conceptName}
+                      inputMode={inputMode}
+                      parseMode={parseMode}
+                      displayMode={displayMode}
+                  />
+              );
+          };
+ReactDOM.render(
+    <App />,
+    document.getElementById('spw-root')
+);

@@ -23,13 +23,15 @@ export default function getLanguageInitializer(monaco: Monaco) {
             base:  'vs-dark',
             // inherit: true,
             rules: [
-                { token: 'delimiter.bracket', foreground: '7f7f40' },
-                { token: 'delimiter.curly', foreground: 'eeeeee' },
-                { token: 'stop', foreground: 'ffffff' },
-                { token: 'concept', foreground: '65a2a6' },
-                { token: 'arrow', foreground: 'f05599' },
-                { token: 'essentialization', foreground: '119966' },
-                { token: 'string', foreground: 'aa2f29' },
+                { token: 'delimiter.bracket', foreground: '#7f7f40' },
+                { token: 'delimiter.curly', foreground: '#eeeeee' },
+                { token: 'stop', foreground: '#ffffff' },
+                { token: 'concept', foreground: '#65a2a6' },
+                { token: 'arrow', foreground: '#f05599' },
+                { token: 'essentialization', foreground: '#119966' },
+                { token: 'perspective', foreground: '#ffdc4e' },
+                { token: 'evaluation', foreground: '#676599' },
+                { token: 'string', foreground: '#aa2f29' },
             ]
         });
     return {

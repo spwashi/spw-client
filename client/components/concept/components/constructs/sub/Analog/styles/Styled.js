@@ -5,8 +5,7 @@ const AnalogWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   box-sizing: border-box;
-  margin-top: .25em;
-  margin-bottom: .25em;
+
   // outline: thin solid red;
   &:hover:before{
     position: absolute;
