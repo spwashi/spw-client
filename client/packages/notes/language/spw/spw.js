@@ -31,6 +31,7 @@ export default function getLanguageInitializer(monaco: Monaco) {
                 { token: 'essentialization', foreground: '#119966' },
                 { token: 'perspective', foreground: '#ffdc4e' },
                 { token: 'evaluation', foreground: '#676599' },
+                { token: 'invocation', foreground: '#d3775e' },
                 { token: 'string', foreground: '#aa2f29' },
             ]
         });

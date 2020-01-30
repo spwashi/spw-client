@@ -21,16 +21,15 @@ interface TreeProps {
 
 
 export default function SpwTree(props: TreeProps) {
-    const { events }                          = props || {};
-    const { input, autoParse }                = props;
-    const { content }                         = input;
+    const { events }                = props || {};
+    const { input, autoParse }      = props;
+    const { content }               = input;
     // display
-    const displayState                        = useToggle(false);
-    const { open }                            = displayState;
-    const [parsed, setParsed]                 = useState();
-    const [symbolResolver, setSymbolResolver] = useState();
-    const [renderKey, setRenderKey]           = useState(0);
-    const onSymbolRegistryKeyChange           = useCallback(() => setRenderKey(renderKey + 1), [renderKey]);
+    const displayState              = useToggle(false);
+    const { open }                  = displayState;
+    const [parsed, setParsed]       = useState();
+    const [renderKey, setRenderKey] = useState(0);
+    const onSymbolRegistryKeyChange = useCallback(() => setRenderKey(renderKey + 1), [renderKey]);
 
     useEffect(
         () => {
