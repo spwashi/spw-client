@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
-import type { IConceptDisplayFactory }                                     from '../components/def/types/factory';
+import type { IConceptDisplayFactory }                                     from '../components/factories/interface/factory';
 import { Delimiter }                                                       from 'spw-lang/lang/constructs/def/delimiter/delimiter';
 import { SymbolRegistry }                                                  from 'spw-lang/lang/registry/symbolRegistry';
 import { SymbolResolver }                                                  from 'spw-lang/lang/registry/symbolResolver';

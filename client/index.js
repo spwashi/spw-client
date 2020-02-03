@@ -1,5 +1,6 @@
 import React, { useEffect, useState }     from 'react';
 import io                                 from 'socket.io-client/dist/socket.io';
+import './scss/_client.scss';
 import ReactDOM                           from 'react-dom';
 import type { TreeInputProps }            from './components/tree';
 import SpwTree                            from './components/tree';
@@ -9,17 +10,8 @@ import { useReadContent, useSaveContent } from './packages/storage/hooks/useSave
 type TreeInputModeOptions = 'props' | 'local-storage' | 'api' | 'local-db';
 type ConnectedTreeProps =
     TreeInputProps
-    | (
-    {
-        inputMode?: TreeInputModeOptions,
-        displayMode?: 'both' | 'editor' | 'tree'
-    }
-    & (
-    {
-        label?: string
-    }
-    )
-    );
+    | ({ inputMode?: TreeInputModeOptions, displayMode?: 'both' | 'editor' | 'tree' }
+    & ({ label?: string }));
 
 function useInputFromProps(props: ConnectedTreeProps) {
     const { content, onChange, onSave } = props;

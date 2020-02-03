@@ -1,0 +1,8 @@
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.207/distr/fira_code.css);
+
+body {
+  font-family: 'Fira Code', monospace;
+  @supports (font-variation-settings: normal) {
+    font-family: 'Fira Code VF', monospace;
+  }
+}

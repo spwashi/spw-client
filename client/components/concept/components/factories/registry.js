@@ -43,5 +43,3 @@ export default function UserRegistryFactory({ concept }: UserRegistryFactoryProp
     const attempt = userConceptDisplayRegistry.render({ concept });
     return attempt || <ConceptDisplayFactory concept={concept} />;
 }
-
-
