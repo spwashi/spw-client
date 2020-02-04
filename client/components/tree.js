@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import * as parser                                 from 'spw-lang/bin/parser';
-import SpwNote                                     from '../packages/notes/SpwNote';
-import { Stage }                                   from '../packages/staging';
-import useToggle                                   from '../packages/toggle/hooks/useToggle';
-import ConceptManager
-                                                   from './concept/components/containers/ConceptManager';
-import ColorContextProvider                        from '../packages/staging/color/context/context';
-
+import React, { useEffect, useState } from 'react';
+import SpwNote                        from '../packages/notes/SpwNote';
+import { Stage }                      from '../packages/staging';
+import useToggle                      from '../packages/toggle/hooks/useToggle';
+import ColorContextProvider           from '../packages/staging/color/context/context';
+import parser                         from 'spw-lang/bin/parser';
+import Ether                          from 'spw-lang/lang/registry/ether/ether';
 
 export type TreeInputProps = {
     content: string;
@@ -21,43 +19,28 @@ interface TreeProps {
 
 
 export default function SpwTree(props: TreeProps) {
-    const { events }                = props || {};
-    const { input, autoParse }      = props;
-    const { content }               = input;
+    const { input }                = props;
+    const { content }              = input;
     // display
-    const displayState              = useToggle(false);
-    const { open }                  = displayState;
-    const [parsed, setParsed]       = useState();
-    const [renderKey, setRenderKey] = useState(0);
-    const onSymbolRegistryKeyChange = useCallback(() => setRenderKey(renderKey + 1), [renderKey]);
+    const displayState             = useToggle(false);
+    const { open }                 = displayState;
+    const { displayMode = 'both' } = props || {};
+    const isEditorMode             = displayMode === 'editor';
+    const [parsed, setParsed]      = useState();
 
     useEffect(
         () => {
-            parsed && parsed.onKeyChange && parsed.onKeyChange(onSymbolRegistryKeyChange);
-            return () => {
-                console.log('should remove anchor change event listener');
-            };
-        },
-        [parsed]
-    );
-
-    const parse = useCallback(
-        () => {
-            const registry = parser.parse(content);
-            setParsed(registry);
+            try {
+                const result: Ether = parser.parse(content);
+                console.log(result);
+                setParsed(result.resolve());
+            } catch (e) {
+                console.error(e);
+            }
         },
         [content]
     );
 
-    useEffect(
-        () => {
-            if (autoParse) parse();
-        },
-        [autoParse, content]
-    );
-
-    const { displayMode = 'both' } = props || {};
-    const isEditorMode             = displayMode === 'editor';
     return (
         <ColorContextProvider colorKey="concept-tree">
             <div className={`spw-tree d-flex ${!open ? 'flex-column' : 'flex-row'}`}>
@@ -73,19 +56,10 @@ export default function SpwTree(props: TreeProps) {
                         )
                         : null
                 }
-                {displayMode === 'tree' || displayMode === 'both' ? (
-                    [
-                        !autoParse ? <button key="button" onClick={parse}>Parse</button> : null,
-                        <Stage key="stage">
-                            <ConceptManager
-                                registry={parsed || null}
-                                resolver={() => {}}
-                                events={events}
-                                id={parsed?.key}
-                            />
-                        </Stage>
-                    ]
-                ) : null}
+                <Stage key="stage">
+                    <pre>{JSON.stringify(parsed, 0, 3)}</pre>
+
+                </Stage>
             </div>
         </ColorContextProvider>
     );
