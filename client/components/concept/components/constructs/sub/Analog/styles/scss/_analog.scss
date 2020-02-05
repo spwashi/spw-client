@@ -1,7 +1,7 @@
 .spw-analog-construct:hover {
-  .analog-delimiter {visibility: visible;}
+  .analog-token {visibility: visible;}
 
-  .spw-analog-construct:not(:hover) .analog-delimiter {visibility: hidden;}
+  .spw-analog-construct:not(:hover) .analog-token {visibility: hidden;}
 }
 
 .spw-analog-right-wrapper { justify-content: flex-start; }

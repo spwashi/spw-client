@@ -26,7 +26,7 @@ export default styled.div`
   }
 
 
-  .spw-delimiter {
+  .spw-token {
     display: block;
     &.spw-close {
       align-items: flex-end;

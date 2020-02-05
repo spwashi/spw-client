@@ -24,6 +24,7 @@ export default function getLanguageInitializer(monaco: Monaco) {
             // inherit: true,
             rules: [
                 { token: 'delimiter.bracket', foreground: '#7f7f40' },
+                { token: 'delimiter.angle', foreground: '#c2c29b' },
                 { token: 'delimiter.curly', foreground: '#6f91aa' },
                 { token: 'delimiter.comment', foreground: '#cccccc' },
                 { token: 'comment', foreground: '#a0a0a0' },
@@ -32,6 +33,7 @@ export default function getLanguageInitializer(monaco: Monaco) {
                 { token: 'arrow', foreground: '#f05599' },
                 { token: 'essentialization', foreground: '#119966' },
                 { token: 'perspective', foreground: '#ffdc4e' },
+                { token: 'performance', foreground: '#00f3ff' },
                 { token: 'evaluation', foreground: '#8280bd' },
                 { token: 'invocation', foreground: '#d3775e' },
                 { token: 'string', foreground: '#aa2f29' },

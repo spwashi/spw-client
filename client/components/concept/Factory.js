@@ -11,8 +11,8 @@ import StrConcept                    from './components/constructs/sub/String/St
 import './scss/_concept.scss';
 import { Essence }                   from 'spw-lang/lang/constructs/sub/essence/def';
 import useLatest                     from '../../util/hooks/useLatest';
-import DelimitedConstruct            from './components/constructs/DelimitedConstruct';
-import { Delimiter }                 from 'spw-lang/lang/constructs/def/delimiter/delimiter';
+import DelimitedConstruct from './components/constructs/DelimitedConstruct';
+import { Token }          from 'spw-lang/lang/constructs/def/token/token';
 
 interface Props {
     concept: IConcept | Analog
@@ -25,7 +25,7 @@ function ConceptDisplayFactory(props: Props) {
     if (AnalogConstruct.isAnalog(concept)) return <Analog analog={concept} />;
     if (StringConstruct.isString(concept)) return <StrConcept concept={concept} />;
     if (Essence.isEssence(concept)) return <EssenceDisplay essence={concept?.essence} />;
-    if (Delimiter.isDelimiter(concept)) return <ConceptAnchor concept={concept} />;
+    if (Token.isToken(concept)) return <ConceptAnchor concept={concept} />;
     const components =
               useLatest(
                   () => ({

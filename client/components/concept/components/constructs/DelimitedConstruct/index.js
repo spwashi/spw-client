@@ -1,11 +1,11 @@
 import React, { useState }                       from 'react';
-import type { ISymmetricallyDelimitedConstruct } from 'spw-lang/lang/constructs/def/delimiter/types/delimited-construct';
+import type { ISymmetricallyDelimitedConstruct } from 'spw-lang/lang/constructs/def/token/types/delimited-construct';
 import type { IConcept }                         from 'spw-lang/lang/constructs/def/types/types';
 import SpaceNode                                 from '../../../../../packages/staging/space/components/SpaceNode';
 import useToggle                                 from '../../../../../packages/toggle/hooks/useToggle';
 import randomString                              from '../../../../../util/random';
 import Body                                      from './components/Body';
-import ConceptDelimiter                          from './components/Delimiter';
+import ConceptToken                          from './components/Token';
 import TriConstructStyle                         from './Styled';
 import useLatest                                 from '../../../../../util/hooks/useLatest';
 import { usePrimeConceptCallback }               from '../../../context/Provider';
@@ -39,7 +39,7 @@ export default function DelimitedConstruct(props: DelimitedConstructProps) {
 
     return (
         <SpaceNode Component={TriConstructStyle} elProps={spaceElProps} position="center" sentinel={false}>
-            <ConceptDelimiter
+            <ConceptToken
                 key="open"
                 body={components?.open}
                 handleInteraction={conceptClickHandler}
@@ -57,7 +57,7 @@ export default function DelimitedConstruct(props: DelimitedConstructProps) {
                 data={construct.body}
             />
 
-            <ConceptDelimiter
+            <ConceptToken
                 key="close"
                 body={components?.close}
                 handleInteraction={toggle}

@@ -5,24 +5,24 @@ import SpaceNode    from '../../../../../../packages/staging/space/components/Sp
 import useLatest    from '../../../../../../util/hooks/useLatest';
 import { useColor } from '../../../../../../packages/staging/color/context/context';
 
-interface DelimiterProps {
+interface TokenProps {
     body: any;
     handleInteraction: Function;
     position: string;
 }
 
 
-const StyledDelimiter =
+const StyledToken =
           styled.div`
   svg path {
-    stroke: ${p => p.delimiterColor};
+    stroke: ${p => p.tokenColor};
   }
   min-width: 6px;
   position: relative;
   display: block;
   flex-wrap: nowrap;
   height: 100%;
-  color: ${p => p.delimiterColor};
+  color: ${p => p.tokenColor};
 
   svg {
     position: absolute;
@@ -38,7 +38,7 @@ const StyledDelimiter =
 `;
 
 
-export default function ConceptDelimiter(props: DelimiterProps) {
+export default function ConceptToken(props: TokenProps) {
     const
         {
             handleInteraction,
@@ -48,17 +48,17 @@ export default function ConceptDelimiter(props: DelimiterProps) {
         }       = props;
     const onKey = e => (e.key === ' ' ? handleInteraction() : null);
 
-    const className    = classNames('stage', `spw-${position}`, 'spw-delimiter');
+    const className    = classNames('stage', `spw-${position}`, 'spw-token');
     const { color }    = useColor('bracket');
-    const spaceElProps = useLatest(() => ({ delimiterColor: color ? color.hex() : 'green' }), []);
+    const spaceElProps = useLatest(() => ({ tokenColor: color ? color.hex() : 'green' }), []);
     if (!body) return null;
     return (
         <SpaceNode
 
             data={(data)}
             position={position}
-            elProps={{ delimiterColor: color ? color.hex() : 'green' }}
-            Component={StyledDelimiter}
+            elProps={{ tokenColor: color ? color.hex() : 'green' }}
+            Component={StyledToken}
             sentinel={false}
         >
             <div

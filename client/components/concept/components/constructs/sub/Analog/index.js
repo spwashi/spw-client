@@ -39,7 +39,7 @@ export default function Analog(props: AnalogProps) {
               useLatest(
                   () => ({
                       open:
-                          <span className="analog-delimiter analog-opener">{'<'}</span>,
+                          <span className="analog-token analog-opener">{'<'}</span>,
                       body:
                           (
                               <AnalogWrapper className={className}>
@@ -49,7 +49,7 @@ export default function Analog(props: AnalogProps) {
                               </AnalogWrapper>
                           ),
                       close:
-                          <span className="analog-delimiter analog-closer">{'>'}</span>,
+                          <span className="analog-token analog-closer">{'>'}</span>,
                   }),
                   [className, analog, Factory]
               );

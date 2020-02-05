@@ -32,7 +32,7 @@ const StyledEssence = styled.div`
     content: '';
     outline: thin solid ${p => p.color ? p.color.hex() : 'transparent'};
   }
-  .spw-delimiter{
+  .spw-token{
   cursor: pointer;
     > *{
         top: 0;

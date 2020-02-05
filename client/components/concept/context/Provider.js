@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react';
-import type { IConceptDisplayFactory }                                     from '../components/factories/interface/factory';
-import { Delimiter }                                                       from 'spw-lang/lang/constructs/def/delimiter/delimiter';
-import { SymbolRegistry }                                                  from 'spw-lang/lang/registry/symbolRegistry';
+import type { IConceptDisplayFactory } from '../components/factories/interface/factory';
+import { Token }                       from 'spw-lang/lang/constructs/def/token/token';
+import { SymbolRegistry }              from 'spw-lang/lang/registry/symbolRegistry';
 import { SymbolResolver }                                                  from 'spw-lang/lang/registry/symbolResolver';
 import { Construct }                                                       from 'spw-lang/lang/constructs/def/construct/construct';
 
@@ -68,8 +68,8 @@ export function usePrimeConceptCallback(concept: Construct): Function {
     const dispatch = useContext(ConceptInteractionDispatchContext);
     return useCallback(
         () => {
-            // no one cares about delimiters
-            if (Delimiter.isDelimiter(concept?.context)) return;
+            // no one cares about tokens
+            if (Token.isToken(concept?.context)) return;
             dispatch({ type: 'prime-concept', payload: { concept } });
         },
         [concept]
