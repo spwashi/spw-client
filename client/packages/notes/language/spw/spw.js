@@ -29,6 +29,8 @@ export default function getLanguageInitializer(monaco: Monaco) {
                 { token: 'delimiter.comment', foreground: '#cccccc' },
                 { token: 'comment', foreground: '#a0a0a0' },
                 { token: 'stop', foreground: '#ffffff' },
+                { token: 'analog', foreground: '#ffffff' },
+                { token: 'register', foreground: '#ffffff' },
                 { token: 'concept', foreground: '#65a2a6' },
                 { token: 'arrow', foreground: '#f05599' },
                 { token: 'essentialization', foreground: '#119966' },
