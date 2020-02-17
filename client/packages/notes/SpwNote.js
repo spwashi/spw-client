@@ -1,8 +1,8 @@
 import React, { useCallback, useRef, useState } from 'react';
 import MonacoEditor, { monaco } from '@monaco-editor/react';
 import type { editor as MonacoNS } from 'monaco-editor';
-import getLanguageInitializer from './language/spw/spw';
-import { initVimMode } from 'monaco-vim';
+import getLanguageInitializer      from '../monaco/spw';
+import { initVimMode }             from 'monaco-vim';
 
 interface NoteProps {
     fullScreen?: boolean,
@@ -56,7 +56,7 @@ function Editor({ content, onChange, fullScreen = false }: EditorProps) {
                     theme={theme}
                     language="spw"
                     value={content}
-                    height={fullScreen ? '90vh' : height}
+                    height={fullScreen ? '100vh' : height}
                     width={fullScreen ? '100%' : width}
                     options={
                         {

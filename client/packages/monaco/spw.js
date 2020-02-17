@@ -32,6 +32,7 @@ export default function getLanguageInitializer(monaco: Monaco) {
                 { token: 'analog', foreground: '#ffffff' },
                 { token: 'register', foreground: '#ffffff' },
                 { token: 'concept', foreground: '#4ec7c3' },
+                { token: 'ambiguous', foreground: '#cfcfcf' },
                 { token: 'arrow', foreground: '#f05599' },
                 { token: 'essentialization', foreground: '#119966' },
                 { token: 'perspective', foreground: '#ffdc4e' },
